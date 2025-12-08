@@ -47,11 +47,11 @@ Search for datasets matching a query. If no query is provided, returns all datas
 Get detailed information about a specific dataset.
 
 **Arguments:**
-- `filename` (string, required): The filename of the dataset (must end with .yaml)
+- `id` (string, required): The ID of the dataset (without .yaml extension)
 
 **Example:**
 ```json
 {
-  "filename": "sentinel-1.yaml"
+  "id": "sentinel-1"
 }
 ```
