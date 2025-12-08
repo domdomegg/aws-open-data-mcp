@@ -3,22 +3,35 @@
   "version": "1.0.0",
   "description": "MCP server for searching AWS Open Data Registry datasets",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "aws-open-data-mcp": "./dist/main.js"
+  },
   "scripts": {
-    "start": "tsx src/index.ts"
+    "build": "tsc",
+    "start": "npm run build && node ./dist/main.js",
+    "start:http": "npm run build && MCP_TRANSPORT=http node ./dist/main.js",
+    "dev": "tsx src/main.ts",
+    "dev:http": "MCP_TRANSPORT=http tsx src/main.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.18.1",
-    "express": "^5.1.0",
+    "@modelcontextprotocol/sdk": "^1.24.3",
+    "express": "^5.2.1",
     "fuse.js": "^7.1.0",
-    "tar": "^7.4.3",
-    "yaml": "^2.8.1",
-    "zod": "^3.25.76"
+    "tar": "^7.5.2",
+    "yaml": "^2.8.2",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.5.2",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
-  }
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ]
 }

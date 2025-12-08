@@ -12,15 +12,35 @@ An MCP server that allows searching and exploring datasets from the [AWS Open Da
 
 ```bash
 npm install
+npm run build
 ```
 
 ## Usage
+
+### stdio transport (default)
 
 ```bash
 npm start
 ```
 
-The server will be available at `http://localhost:3000/mcp` using the streamable HTTP transport. You can install this in Claude Code with: `claude mcp add aws-open-data --transport http http://localhost:3000/mcp`. You'll then need to restart Claude Code to pick up the new MCP.
+This runs the server with stdio transport, suitable for use with Claude Desktop or other MCP clients that support stdio.
+
+### HTTP transport
+
+```bash
+npm run start:http
+```
+
+The server will be available at `http://localhost:3000/mcp`. You can customize the port with the `PORT` environment variable.
+
+> **Warning**: The HTTP transport has no authentication. Other processes on your machine—including websites in your browser—could potentially access the endpoint and control your account. Only use HTTP transport behind a reverse proxy or in another secured setup.
+
+## Development
+
+```bash
+npm run dev        # Run with tsx (stdio)
+npm run dev:http   # Run with tsx (HTTP)
+```
 
 ## Tools
 
@@ -47,11 +67,11 @@ Search for datasets matching a query. If no query is provided, returns all datas
 Get detailed information about a specific dataset.
 
 **Arguments:**
-- `filename` (string, required): The filename of the dataset (must end with .yaml)
+- `id` (string, required): The ID of the dataset (without .yaml extension)
 
 **Example:**
 ```json
 {
-  "filename": "sentinel-1.yaml"
+  "id": "sentinel-1"
 }
 ```
