@@ -33,8 +33,6 @@ npm run start:http
 
 The server will be available at `http://localhost:3000/mcp`. You can customize the port with the `PORT` environment variable.
 
-> **Warning**: The HTTP transport has no authentication. Other processes on your machine—including websites in your browser—could potentially access the endpoint and control your account. Only use HTTP transport behind a reverse proxy or in another secured setup.
-
 ## Development
 
 ```bash
